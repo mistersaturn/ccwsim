@@ -1,0 +1,301 @@
+body {
+  margin: 0;
+  font-family: 'Courier New', monospace;
+  background-color: #6c96cc;
+  color: #053452;
+  padding: 20px;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.header h1 {
+  color: #ffdd57;
+  text-shadow: 0 0 5px #f80, 0 0 10px #f80;
+}
+
+.nav {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 30px;
+}
+
+.nav button {
+  background-color: #053452;
+  color: #DC6624;
+  border: 2px solid #DC6624;
+  padding: 10px 16px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.nav button:hover {
+  background-color: #F6AA29;
+  color: #053452;
+}
+
+.content-wrapper {
+  max-width: 1080px;
+  margin: 0 auto;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.card {
+  background-color: #053452;
+  border: 2px solid #CD3E23;
+  color: #F4EAD7;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 0 10px #CD3E23;
+  max-width: 800px;
+  width: 100%;
+  /* Ensure display property is not forced, so JS can toggle display:none/block */
+}
+
+.card h2, .card h3 {
+  color: #DC6624;
+  margin-top: 0;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+  font-size: 14px;
+}
+
+table th, table td {
+  border: 1px solid #F6AA29;
+  padding: 8px;
+  text-align: left;
+}
+
+table th {
+  background-color: #0E5769;
+  color: #F6AA29;
+  font-weight: bold;
+}
+
+table tr:nth-child(even) {
+  background-color: rgba(14, 87, 105, 0.3);
+}
+
+table tr:hover {
+  background-color: rgba(246, 170, 41, 0.1);
+}
+
+label {
+  display: block;
+  margin: 10px 0;
+}
+
+select {
+  background-color: #0E5769;
+  color: #F4EAD7;
+  border: 1px solid #F6AA29;
+  padding: 6px;
+}
+
+button {
+  background-color: #DC6624;
+  color: #F4EAD7;
+  border: 1px solid #F6AA29;
+  padding: 8px 16px;
+  cursor: pointer;
+  font-family: 'Courier New', monospace;
+  font-size: 14px;
+  transition: transform 0.15s cubic-bezier(0.4,1.5,0.5,1), box-shadow 0.15s cubic-bezier(0.4,1.5,0.5,1);
+  box-shadow: 0 2px 8px 0 rgba(220,102,36,0.12);
+}
+
+button:hover {
+  background-color: #F6AA29;
+  color: #053452;
+  transform: scale(1.12);
+  box-shadow: 0 0 16px 4px #ffdd57, 0 0 8px 2px #F6AA29, 0 0 2px 1px #fff;
+  z-index: 2;
+}
+
+.primary {
+  background-color: #f0f;
+  color: #111;
+  font-weight: bold;
+  border: none;
+  padding: 10px 16px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.tab {
+  display: none;
+}
+
+.tab.active {
+  display: block;
+}
+
+#wrestler-details img {
+  margin-bottom: 10px;
+  box-shadow: 0 0 5px #F6AA29;
+}
+
+#current-champions div {
+  padding: 8px;
+  border-bottom: 1px solid #F6AA29;
+}
+
+#current-champions div:last-child {
+  border-bottom: none;
+}
+
+#show-summary .card {
+  background-color: rgba(5, 52, 82, 0.9);
+  border-color: #F6AA29;
+}
+
+#match-card-list li {
+  margin-bottom: 15px;
+  padding: 10px;
+  background-color: rgba(14, 87, 105, 0.3);
+  border-left: 3px solid #F6AA29;
+}
+
+.momentum-positive {
+  color: #4CAF50;
+}
+
+.momentum-negative {
+  color: #f44336;
+}
+
+.momentum-neutral {
+  color: #F6AA29;
+}
+
+.sortable-header {
+  background-color: #0E5769;
+  color: #ffdd57;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.sortable-header:hover {
+  background-color: #F6AA29;
+  color: #053452;
+}
+
+.calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 2px;
+  margin-top: 15px;
+}
+
+.calendar-day {
+  border: 1px solid #F6AA29;
+  padding: 8px;
+  min-height: 80px;
+  background-color: #0E5769;
+  position: relative;
+}
+
+.calendar-day.other-month {
+  background-color: rgba(14, 87, 105, 0.3);
+  color: #888;
+}
+
+.calendar-day.today {
+  background-color: #CD3E23;
+  color: #F4EAD7;
+}
+
+.calendar-day-number {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.calendar-day-shows {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.show-logo {
+  width: 30px;
+  height: 20px;
+  object-fit: contain;
+  cursor: pointer;
+  border: 1px solid transparent;
+  transition: border-color 0.2s;
+}
+
+.show-logo:hover {
+  border-color: #F6AA29;
+}
+
+.calendar-day-actions {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  display: none;
+}
+
+.calendar-day:hover .calendar-day-actions {
+  display: block;
+}
+
+.calendar-day-actions button {
+  font-size: 10px;
+  padding: 2px 4px;
+  margin: 1px;
+  background-color: #DC6624;
+  border: 1px solid #F6AA29;
+}
+
+.calendar-day-actions button:hover {
+  background-color: #F6AA29;
+  color: #053452;
+}
+
+.weekday-header {
+  text-align: center;
+  font-weight: bold;
+  color: #F6AA29;
+  padding: 8px;
+  background-color: #053452;
+  border: 1px solid #F6AA29;
+}
+
+.show-match-actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 16px;
+  justify-content: flex-start;
+}
+
+@media (max-width: 768px) {
+  table {
+    font-size: 12px;
+  }
+  
+  table th, table td {
+    padding: 4px;
+  }
+  
+  .nav {
+    flex-wrap: wrap;
+  }
+  
+  .nav button {
+    font-size: 14px;
+    padding: 8px 12px;
+  }
+}

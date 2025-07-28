@@ -1,0 +1,141 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>CCW Simulator</title>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+  <div class="header">
+    <img style='object-fit: contain' src='assets/logos/ccw-mainsm.png'/>
+    <p>Booking Simulator - 1978–1992</p>
+  </div>
+
+  <div class="nav">
+    <button onclick="showTab('dashboard')">Dashboard</button>
+    <button onclick="showTab('roster')">Roster</button>
+    <button onclick="showTab('book')">Book Show</button>
+    <button onclick="showTab('history')">Title History</button>
+  </div>
+
+<div class="content-wrapper">
+  <div class="content">
+    <div id="dashboard" class="tab active">
+      <div class="card">
+        <h2>Promoter Dashboard</h2>
+        <p>📅 Week: <span id="current-week">1</span></p>
+        <p id="budget-display">💰 Budget: $12,000</p>
+        <p>🏟️ Next Show: Unbooked</p>
+        <div style="margin-top: 15px;">
+          <button onclick="saveGameState()">Save Game</button>
+          <button onclick="loadGameState()">Load Game</button>
+          <button onclick="exportGameState()">Export Save</button>
+          <input type="file" id="import-game-state" style="display:none" accept="application/json"/>
+          <button onclick="document.getElementById('import-game-state').click()">Import Save</button>
+        </div>
+      </div>
+      
+      <div class="card">
+        <h3>Current Champions</h3>
+        <div id="current-champions"></div>
+      </div>
+    </div>
+
+    <div id="roster" class="tab">
+      <div class="card">
+        <h3>Wrestler Roster</h3>
+        <table>
+          <thead>
+            <tr>
+              <th>Image</th>
+              <th onclick="sortRosterTable('name')" class="sortable-header">Name <span id="sort-indicator-name"></span></th>
+              <th onclick="sortRosterTable('type')" class="sortable-header">Type <span id="sort-indicator-type"></span></th>
+              <th onclick="sortRosterTable('pop')" class="sortable-header">Pop <span id="sort-indicator-pop"></span></th>
+              <th>Finisher</th>
+              <th>Alignment</th>
+              <th>Record</th>
+              <th onclick="sortRosterTable('momentum')" class="sortable-header">Momentum <span id="sort-indicator-momentum"></span></th>
+              <th>View</th>
+            </tr>
+          </thead>
+          <tbody id="roster-table-body"></tbody>
+        </table>
+      </div>
+
+      <div class="card" id="wrestler-details" style="display: none;">
+        <h3 id="detail-name"></h3>
+        <img id="detail-photo" src="" alt="" style="max-width: 550px; border: 2px solid #888;" />
+        <p><strong>Type:</strong> <span id="detail-type"></span></p>
+        <p><strong>Manager:</strong> <span id="detail-manager"></span></p>
+        <p><strong>Alignment:</strong> <span id="detail-alignment"></span></p>
+        <p><strong>Finisher:</strong> <span id="detail-finisher"></span></p>
+        <p><strong>Moveset:</strong> <span id="detail-moveset"></span></p>
+        <p><strong>Record:</strong> <span id="detail-record"></span></p>
+        <p><strong>Stats:</strong></p>
+        <ul id="detail-stats"></ul>
+        <p><strong>Titles Held:</strong> <span id="detail-titles"></span></p>
+        <div id="detail-title-images" style="margin-top:10px;"></div>
+      </div>
+
+      <button id="toggle-stat-management" style="margin-bottom:10px;">Show Stat Management & Manual Override</button>
+      <div class="card" id="stat-management-card" style="display:none;">
+        <h3>Stat Management & Manual Override</h3>
+        <div style="margin-bottom: 10px;">
+          <button id="simulate-stat-update">Simulate Stat Update</button>
+          <button id="save-manual-changes">Save Manual Changes</button>
+          <button id="export-roster">Export Roster</button>
+          <input type="file" id="import-roster" style="display:none" accept="application/json"/>
+          <button id="import-roster-btn">Import Roster</button>
+        </div>
+        <div id="editable-roster-table"></div>
+      </div>
+    </div>
+
+    <div id="book" class="tab">
+      <div class="card"><h3>Book a Show</h3>
+        <label>Show Type:
+          <select id="show-type-select">
+            <option value="tnt">Thursday Night Throwdown (TNT)</option>
+            <option value="ss">Saturday Slamfest (SS)</option>
+            <option value="sns">Sunday Night Stampede (SNS)</option>
+            <option value="house">House Show</option>
+            <option value="ppv">PPV</option>
+          </select>
+        </label>
+        <label>
+          Date:
+          <input type="date" id="show-date-picker" />
+        </label>
+        <label>Venue:
+          <select id="venue-select">
+            <option>Loading venues...</option>
+          </select>
+        </label>
+        <div id="venue-info" style="margin-top:10px;"></div>
+        <button onclick="bookSelectedShow()">Book Show</button>
+      </div>
+      <div class="card" id="booked-shows-list">
+        <h4>Booked Shows</h4>
+        <div id="booked-shows-table"></div>
+      </div>
+      <div class="card" id="show-match-management" style="display:none;">
+        <h4>Manage Matches for <span id="show-match-title"></span> (<span id="show-match-date"></span>)</h4>
+        <div id="show-match-list"></div>
+        <!-- Buttons are now rendered by JS -->
+      </div>
+      <div id="show-summary"></div>
+    </div>
+
+    <div id="history" class="tab">
+      <div class="card">
+        <div id="title-history"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+  <script src="script.js"></script>
+</body>
+</html>

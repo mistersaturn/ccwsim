@@ -1,0 +1,25 @@
+[Northeast]
+Ocean Beach Park, New London, CT
+Atlantic City Convention Hall - Atlantic City, NJ
+Boardwalk Hall - Atlantic City, NJ
+[Mid-Atlantic]
+Baltimore Civic Center - Baltimore, MD
+Virginia Beach Dome - Virginia Beach, VA
+Hampton Coliseum - Virginia Beach, VA
+[Carolinas]
+J.S. Dorton Arena - Raleigh, NC
+Greensboro Coliseum - Greensboro, NC
+Charlotte Coliseum - Charlotte, NC
+The Soapbox - Wilmington, NC
+Greenville Auditorium - Greenville, SC
+Spartanburg Memorial Auditorium - Spartanburg, SC
+The Pavilion - Myrtle Beach, SC (Home of CCW)
+County Hall - Charleston, SC
+[Gulf Coast]
+Pensacola Civic Center - Pensacola, FL
+Jacksonville Coliseum - Jacksonville, FL
+Fort Homer Hesterly Armory - Tampa, FL
+Tampa Sportatorium - Tampa, FL
+Eddie Graham Sports Stadium - Orlando, FL
+Bayfront Center - St. Petersburg, FL
+Hollywood Sportatorium - Miami, FL

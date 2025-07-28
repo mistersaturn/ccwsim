@@ -1,0 +1,30 @@
+[
+  {
+    "id": "ccw",
+    "name": "CCW World Championship",
+    "image": "assets/belts/ccwchamp.png",
+    "type": "Heavyweight",
+    "holderId": "wrestler001"
+  },
+  {
+    "id": "cruz",
+    "name": "CCW Cruiserweight Championship",
+    "image": "assets/belts/cruzchamp.png",
+    "type": "Cruiserweight",
+    "holderId": "wrestler005"
+  },
+  {
+    "id": "tv",
+    "name": "CCW Television Championship",
+    "image": "assets/belts/tvchamp.png",
+    "type": "Any",
+    "holderId": "wrestler002"
+  },
+  {
+    "id": "tag",
+    "name": "CCW Tag Team Championship",
+    "image": "assets/belts/tagchamp.png",
+    "type": "Tag Team",
+    "holderId": "wrestler019"
+  }
+]
