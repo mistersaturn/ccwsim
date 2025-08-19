@@ -13,10 +13,10 @@
   </div>
 
   <div class="nav">
-    <button onclick="showTab('dashboard')">Dashboard</button>
-    <button onclick="showTab('roster')">Roster</button>
-    <button onclick="showTab('book')">Book Show</button>
-    <button onclick="showTab('history')">Title History</button>
+    <button onclick="App.showTab('dashboard')">Dashboard</button>
+    <button onclick="App.showTab('roster')">Roster</button>
+    <button onclick="App.showTab('book')">Book Show</button>
+    <button onclick="App.showTab('history')">Title History</button>
   </div>
 
 <div class="content-wrapper">
@@ -28,9 +28,9 @@
         <p id="budget-display">💰 Budget: $12,000</p>
         <p>🏟️ Next Show: Unbooked</p>
         <div style="margin-top: 15px;">
-          <button onclick="saveGameState()">Save Game</button>
-          <button onclick="loadGameState()">Load Game</button>
-          <button onclick="exportGameState()">Export Save</button>
+          <button onclick="App.saveGameState()">Save Game</button>
+          <button onclick="App.loadGameState()">Load Game</button>
+          <button onclick="App.exportGameState()">Export Save</button>
           <input type="file" id="import-game-state" style="display:none" accept="application/json"/>
           <button onclick="document.getElementById('import-game-state').click()">Import Save</button>
         </div>
@@ -49,13 +49,13 @@
           <thead>
             <tr>
               <th>Image</th>
-              <th onclick="sortRosterTable('name')" class="sortable-header">Name <span id="sort-indicator-name"></span></th>
-              <th onclick="sortRosterTable('type')" class="sortable-header">Type <span id="sort-indicator-type"></span></th>
-              <th onclick="sortRosterTable('pop')" class="sortable-header">Pop <span id="sort-indicator-pop"></span></th>
+              <th onclick="App.sortRosterTable('name')" class="sortable-header">Name <span id="sort-indicator-name"></span></th>
+              <th onclick="App.sortRosterTable('type')" class="sortable-header">Type <span id="sort-indicator-type"></span></th>
+              <th onclick="App.sortRosterTable('pop')" class="sortable-header">Pop <span id="sort-indicator-pop"></span></th>
               <th>Finisher</th>
               <th>Alignment</th>
               <th>Record</th>
-              <th onclick="sortRosterTable('momentum')" class="sortable-header">Momentum <span id="sort-indicator-momentum"></span></th>
+              <th onclick="App.sortRosterTable('momentum')" class="sortable-header">Momentum <span id="sort-indicator-momentum"></span></th>
               <th>View</th>
             </tr>
           </thead>
@@ -113,7 +113,7 @@
           </select>
         </label>
         <div id="venue-info" style="margin-top:10px;"></div>
-        <button onclick="bookSelectedShow()">Book Show</button>
+        <button onclick="App.bookSelectedShow()">Book Show</button>
       </div>
       <div class="card" id="booked-shows-list">
         <h4>Booked Shows</h4>
