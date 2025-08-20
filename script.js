@@ -276,6 +276,68 @@ const View = {
         }
       }
     });
+  },
+  
+  // Title history rendering
+  renderTitleHistory: (model) => {
+    const historyDiv = document.getElementById('title-history');
+    if (!historyDiv) return;
+    
+    console.log('renderTitleHistory called with model:', model);
+    console.log('titleHistory length:', model.titleHistory.length);
+    console.log('titleHistory data:', model.titleHistory);
+    
+    if (model.titleHistory.length === 0) {
+      historyDiv.innerHTML = '<p><em>No title changes have occurred yet. Title history will appear here after championship matches are simulated.</em></p>';
+      return;
+    }
+    
+    // Group by title
+    const titleGroups = {};
+    model.titleHistory.forEach(entry => {
+      if (!titleGroups[entry.titleId]) {
+        titleGroups[entry.titleId] = [];
+      }
+      titleGroups[entry.titleId].push(entry);
+    });
+    
+    let html = '';
+    
+    // Sort titles by most recent change
+    Object.entries(titleGroups).forEach(([titleId, entries]) => {
+      const title = model.titles.find(t => t.id === titleId);
+      if (!title) return;
+      
+      // Sort entries by week (most recent first)
+      entries.sort((a, b) => b.week - a.week);
+      
+      html += `<div class="title-history-section" style="margin-bottom: 30px; padding: 15px; border: 1px solid #ddd; border-radius: 8px;">`;
+      html += `<h3 style="margin-top: 0; color: #333;">`;
+      html += `<img src="${title.image}" alt="${title.name}" style="width: 30px; height: 20px; vertical-align: middle; margin-right: 10px;">`;
+      html += `${title.name}</h3>`;
+      
+      html += '<table style="width: 100%; border-collapse: collapse;">';
+      html += '<thead><tr style="background-color: #f5f5f5;">';
+      html += '<th style="padding: 8px; text-align: left; border-bottom: 1px solid #ddd;">Week</th>';
+      html += '<th style="padding: 8px; text-align: left; border-bottom: 1px solid #ddd;">Date</th>';
+      html += '<th style="padding: 8px; text-align: left; border-bottom: 1px solid #ddd;">Previous Champion</th>';
+      html += '<th style="padding: 8px; text-align: left; border-bottom: 1px solid #ddd;">New Champion</th>';
+      html += '</tr></thead><tbody>';
+      
+      entries.forEach(entry => {
+        html += '<tr>';
+        html += `<td style="padding: 8px; border-bottom: 1px solid #eee;">${entry.week}</td>`;
+        html += `<td style="padding: 8px; border-bottom: 1px solid #eee;">${entry.date}</td>`;
+        html += `<td style="padding: 8px; border-bottom: 1px solid #eee;">${entry.oldHolder}</td>`;
+        html += `<td style="padding: 8px; border-bottom: 1px solid #eee;"><strong>${entry.newHolder}</strong></td>`;
+        html += '</tr>';
+      });
+      
+      html += '</tbody></table>';
+      html += '</div>';
+    });
+    
+    historyDiv.innerHTML = html;
   }
 };
 
@@ -354,7 +416,10 @@ const Controller = {
   // Show management
   bookShow: () => {
     const showType = document.getElementById('show-type-select').value;
-    const showDate = new Date(document.getElementById('show-date-picker').value);
+    const dateValue = document.getElementById('show-date-picker').value;
+    // Fix timezone issue: create date in local timezone to avoid date shifting
+    const [year, month, day] = dateValue.split('-').map(Number);
+    const showDate = new Date(year, month - 1, day); // month is 0-indexed in Date constructor
     const venue = document.getElementById('venue-select').value;
     
     if (isNaN(showDate)) {
@@ -890,7 +955,7 @@ const App = {
         titles: gameState.titles || [],
         budget: gameState.budget || 12000,
         currentWeek: gameState.currentWeek || 1,
-        currentDate: new Date(gameState.currentDate || '1978-01-01'),
+        currentDate: gameState.currentDate ? new Date(gameState.currentDate) : new Date(1978, 0, 1), // month is 0-indexed
         titleHistory: gameState.titleHistory || [],
         showHistory: gameState.showHistory || [],
         allShows: gameState.allShows || [],
@@ -963,6 +1028,7 @@ const App = {
     View.renderDashboard(App.model);
     View.renderRosterTable(App.model);
     View.renderBookedShowsTable(App.model);
+    View.renderTitleHistory(App.model);
     App.renderEditableRosterTable();
   },
   
@@ -1054,7 +1120,7 @@ document.addEventListener('DOMContentLoaded', () => {
               titles: gameState.titles || [],
               budget: gameState.budget || 12000,
               currentWeek: gameState.currentWeek || 1,
-              currentDate: new Date(gameState.currentDate || '1978-01-01'),
+              currentDate: gameState.currentDate ? new Date(gameState.currentDate) : new Date(1978, 0, 1), // month is 0-indexed
               titleHistory: gameState.titleHistory || [],
               showHistory: gameState.showHistory || [],
               allShows: gameState.allShows || [],
